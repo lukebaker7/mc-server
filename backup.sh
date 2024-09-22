@@ -3,6 +3,9 @@ SOURCE_DIR="/home/opc/mc-server2"
 CURRENT_DATE=$(date +%Y%m%d)
 OUTPUT="/home/opc/${CURRENT_DATE}_backup.zip"
 
+sudo rm -rf /home/opc/mc-server2
+
+rsync -av --exclude=".*" --exclude="dev/" --exclude="mc-server2" --exclude="main" --exclude="/lib*" /home/opc/ /home/opc/mc-server2
 
 sudo zip -r "$OUTPUT" "$SOURCE_DIR"
 
