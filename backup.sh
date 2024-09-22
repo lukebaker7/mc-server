@@ -9,7 +9,7 @@ sudo zip -r "$OUTPUT" "$SOURCE_DIR"
 if [ $? -eq 0 ]; then
     echo "Backup created! Check out $OUTPUT"
 
-    oci os object put --bucket-name mc-server --name "backup_$CURRENT_DATE.zip" --file "$OUTPUT"
+    oci os object put --bucket-name mc-server --name "/backups/backup_$CURRENT_DATE.zip" --file "$OUTPUT"
 
     if [ $? -eq 0 ]; then
         echo "Uploaded successfully!"
