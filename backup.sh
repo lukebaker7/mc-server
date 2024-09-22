@@ -1,7 +1,7 @@
 #!/bin/bash
-SOURCE_DIR="/home/opc/backup1"
+SOURCE_DIR="/home/opc/mc-server2"
 CURRENT_DATE=$(date +%Y%m%d)
-OUTPUT="/home/opc/backup_$CURRENT_DATE.zip"
+OUTPUT="/home/opc/${CURRENT_DATE}_backup.zip"
 
 
 sudo zip -r "$OUTPUT" "$SOURCE_DIR"
@@ -9,12 +9,13 @@ sudo zip -r "$OUTPUT" "$SOURCE_DIR"
 if [ $? -eq 0 ]; then
     echo "Backup created! Check out $OUTPUT"
 
-    oci os object put --bucket-name mc-server --name "/backups/backup_$CURRENT_DATE.zip" --file "$OUTPUT"
+    oci os object put --bucket-name mc-server --name "/backups/${CURRENT_DATE}_backup.zip" --file "$OUTPUT"
 
     if [ $? -eq 0 ]; then
         echo "Uploaded successfully!"
+        sudo rm "$OUTPUT"
     else
-        echo "Uh Oh Stinky poopy bad!"
+        echo "Uh Oh Stinky poopy bad! No uploady!"
     fi
 
 else
