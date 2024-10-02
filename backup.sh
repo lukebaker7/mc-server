@@ -1,13 +1,11 @@
 #!/bin/bash
-SOURCE_DIR="/home/opc/mc-server2"
+SOURCE_DIR="/home/opc/"
 CURRENT_DATE=$(date +%Y%m%d)
-OUTPUT="/home/opc/${CURRENT_DATE}_backup.zip"
+OUTPUT="~/backupHold/${CURRENT_DATE}_backup.zip"
 
-sudo rm -rf /home/opc/mc-server2
+cd "$SOURCE_DIR"
 
-rsync -av --exclude=".*" --exclude="dev/" --exclude="mc-server2" --exclude="main" --exclude="/lib*" /home/opc/ /home/opc/mc-server2
-
-sudo zip -r "$OUTPUT" "$SOURCE_DIR"
+sudo zip -r "$OUTPUT" mc-server/
 
 if [ $? -eq 0 ]; then
     echo "Backup created! Check out $OUTPUT"
