@@ -1,7 +1,7 @@
 #!/bin/bash
-SOURCE_DIR="/home/opc/"
+SOURCE_DIR="/home/opc/main/"
 CURRENT_DATE=$(date +%Y%m%d)
-OUTPUT="/home/opc/backupHold/${CURRENT_DATE}_backup.zip"
+OUTPUT="/home/opc/main/backup/${CURRENT_DATE}_backup.zip"
 
 cd "$SOURCE_DIR"
 
